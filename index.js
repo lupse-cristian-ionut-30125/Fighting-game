@@ -135,7 +135,7 @@ window.addEventListener("keydown", (event) => {
       player2.lastKey = "ArrowLeft";
       break;
     case "ArrowUp":
-      player2.velocity.y = -2ff0;
+      player2.velocity.y = -20;
       break;
   }
   console.log(event.key);
