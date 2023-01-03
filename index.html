@@ -43,8 +43,19 @@
       </div>
       <!-- Timer -->
       <div
-        style="background-color: red; width: 150; height: 150; flex-shrink: 0"
-      ></div>
+        id="timer"
+        style="
+          background-color: red;
+          width: 150px;
+          height: 150px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        10
+      </div>
       <!-- player2 health -->
       <div style="position: relative; height: 50px; width: 100%">
         <div style="background-color: yellow; height: 50px"></div>
@@ -62,7 +73,25 @@
       </div>
       <div></div>
     </div>
+    <div
+      id="displayText"
+      style="
+        position: absolute;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+      "
+    >
+      TIE
+    </div>
     <canvas> </canvas>
   </div>
+  <script src="js/utils.js"></script>
+  <script src="js/classes.js"></script>
   <script src="index.js"></script>
 </body>
