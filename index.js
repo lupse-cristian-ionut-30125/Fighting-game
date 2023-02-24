@@ -39,49 +39,49 @@ const player1 = new Fighter({
     x: 0,
     y: 0,
   },
-  imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Idle.png",
-  framesMax: 8,
+  imageSrc: "./assets/oak_woods_v1.0/Martial Hero 3/Sprite/Idle.png",
+  framesMax: 10,
   scale: 4.5,
   offset: {
-    x: 215,
-    y: 250,
+    x: 115,
+    y: 70,
   },
   sprites: {
     idle: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Idle.png",
-      framesMax: 8,
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 3/Sprite/Idle.png",
+      framesMax: 10,
     },
     run: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Run.png",
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 3/Sprite/Run.png",
       framesMax: 8,
     },
     jump: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Jump.png",
-      framesMax: 2,
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 3/Sprite/Going Up.png",
+      framesMax: 3,
     },
     fall: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Fall.png",
-      framesMax: 2,
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 3/Sprite/Going Down.png",
+      framesMax: 3,
     },
     attack1: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Attack1.png",
-      framesMax: 6,
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 3/Sprite/Attack3.png",
+      framesMax: 9,
     },
   },
   attackBox: {
     offset: {
-      x: 200,
-      y: 100,
+      x: 250,
+      y: 150,
     },
     width: 200,
-    health: 100,
+    height: 100,
   },
 });
 
 const player2 = new Fighter({
   position: {
     x: 800,
-    y: 174,
+    y: 0,
   },
   velocity: {
     x: 0,
@@ -89,45 +89,45 @@ const player2 = new Fighter({
   },
   color: "red",
   offset: {
-    x: -100,
+    x: 100,
     y: 0,
   },
-  imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Idle.png",
-  framesMax: 4,
-  scale: 4.5,
+  imageSrc: "./assets/oak_woods_v1.0/Wizard Pack/Idle.png",
+  framesMax: 6,
+  scale: 2.5,
   offset: {
-    x: 215,
-    y: 273,
+    x: 315,
+    y: 50,
   },
   sprites: {
     idle: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Idle.png",
-      framesMax: 4,
+      imageSrc: "./assets/oak_woods_v1.0/Wizard Pack/IdleInverted.png",
+      framesMax: 6,
     },
     run: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Run.png",
+      imageSrc: "./assets/oak_woods_v1.0/Wizard Pack/RunInverted.png",
       framesMax: 8,
     },
     jump: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Jump.png",
+      imageSrc: "./assets/oak_woods_v1.0/Wizard Pack/JumpInverted.png",
       framesMax: 2,
     },
     fall: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Fall.png",
+      imageSrc: "./assets/oak_woods_v1.0/Wizard Pack/FallInverted.png",
       framesMax: 2,
     },
     attack1: {
-      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Attack1.png",
-      framesMax: 4,
+      imageSrc: "./assets/oak_woods_v1.0/Wizard Pack/Attack2Inverted.png",
+      framesMax: 8,
     },
   },
   attackBox: {
     offset: {
       x: 0,
-      y: 0,
+      y: 100,
     },
-    width: 200,
-    health: 100,
+    width: 100,
+    height: 100,
   },
 });
 
