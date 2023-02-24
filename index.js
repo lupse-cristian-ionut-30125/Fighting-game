@@ -16,6 +16,16 @@ const background = new Sprite({
   imageSrc: "./assets/oak_woods_v1.0/background/background1.png",
 });
 
+const shop = new Sprite({
+  position: {
+    x: 1130,
+    y: 174,
+  },
+  imageSrc: "./assets/oak_woods_v1.0/decorations/shop_anim.png",
+  scale: 4.5,
+  framesMax: 6,
+});
+
 const player1 = new Fighter({
   position: {
     x: 0,
@@ -29,12 +39,49 @@ const player1 = new Fighter({
     x: 0,
     y: 0,
   },
+  imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Idle.png",
+  framesMax: 8,
+  scale: 4.5,
+  offset: {
+    x: 215,
+    y: 250,
+  },
+  sprites: {
+    idle: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Idle.png",
+      framesMax: 8,
+    },
+    run: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Run.png",
+      framesMax: 8,
+    },
+    jump: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Jump.png",
+      framesMax: 2,
+    },
+    fall: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Fall.png",
+      framesMax: 2,
+    },
+    attack1: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero/Sprites/Attack1.png",
+      framesMax: 6,
+    },
+  },
+  attackBox: {
+    offset: {
+      x: 200,
+      y: 100,
+    },
+    width: 200,
+    health: 100,
+  },
 });
 
 const player2 = new Fighter({
   position: {
     x: 800,
-    y: 200,
+    y: 174,
   },
   velocity: {
     x: 0,
@@ -42,14 +89,49 @@ const player2 = new Fighter({
   },
   color: "red",
   offset: {
-    x: 100,
+    x: -100,
     y: 0,
+  },
+  imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Idle.png",
+  framesMax: 4,
+  scale: 4.5,
+  offset: {
+    x: 215,
+    y: 273,
+  },
+  sprites: {
+    idle: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Idle.png",
+      framesMax: 4,
+    },
+    run: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Run.png",
+      framesMax: 8,
+    },
+    jump: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Jump.png",
+      framesMax: 2,
+    },
+    fall: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Fall.png",
+      framesMax: 2,
+    },
+    attack1: {
+      imageSrc: "./assets/oak_woods_v1.0/Martial Hero 2/Sprites/Attack1.png",
+      framesMax: 4,
+    },
+  },
+  attackBox: {
+    offset: {
+      x: 0,
+      y: 0,
+    },
+    width: 200,
+    health: 100,
   },
 });
 
 player2.draw();
-
-console.log(player1);
 
 const keys = {
   a: {
@@ -78,6 +160,7 @@ function animate() {
   canvasContext.fillStyle = "black";
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
+  shop.update();
   player1.update();
   player2.update();
 
@@ -85,21 +168,39 @@ function animate() {
   player2.velocity.x = 0;
 
   //player 1 movement
+
   if (keys.a.pressed && player1.lastKey === "a") {
     player1.velocity.x = -5;
+    player1.switchSprite("run");
+  } else if (keys.d.pressed && player1.lastKey === "d") {
+    player1.velocity.x = 5;
+    player1.switchSprite("run");
   } else {
-    if (keys.d.pressed && player1.lastKey === "d") {
-      player1.velocity.x = 5;
-    }
+    player1.switchSprite("idle");
   }
 
-  //player2 movement
+  // jumping
+  if (player1.velocity.y < 0) {
+    player1.switchSprite("jump");
+  } else if (player1.velocity.y > 0) {
+    player1.switchSprite("fall");
+  }
   if (keys.ArrowLeft.pressed && player2.lastKey === "ArrowLeft") {
+    //player2 movement
     player2.velocity.x = -5;
+    player2.switchSprite("run");
+  } else if (keys.ArrowRight.pressed && player2.lastKey === "ArrowRight") {
+    player2.velocity.x = 5;
+    player2.switchSprite("run");
   } else {
-    if (keys.ArrowRight.pressed && player2.lastKey === "ArrowRight") {
-      player2.velocity.x = 5;
-    }
+    player2.switchSprite("idle");
+  }
+
+  // jumping
+  if (player2.velocity.y < 0) {
+    player2.switchSprite("jump");
+  } else if (player2.velocity.y > 0) {
+    player2.switchSprite("fall");
   }
 
   //detect for collision
@@ -108,7 +209,8 @@ function animate() {
       rectangle1: player1,
       rectangle2: player2,
     }) &&
-    player1.isAttacking
+    player1.isAttacking &&
+    player1.framesCurrent === 4
   ) {
     player1.isAttacking = false;
     player2.health -= 20;
@@ -119,7 +221,8 @@ function animate() {
       rectangle1: player2,
       rectangle2: player1,
     }) &&
-    player2.isAttacking
+    player2.isAttacking &&
+    player1.framesCurrent === 4
   ) {
     player2.isAttacking = false;
     player1.health -= 20;
